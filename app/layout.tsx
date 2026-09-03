@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://stsfeed.id"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "STS Feed — Nutrisi tepat, ternak hebat",
     template: "%s | STS Feed",

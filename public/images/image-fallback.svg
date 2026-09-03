@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">STS Feed</title>
+  <desc id="desc">Ilustrasi pengganti gambar STS Feed</desc>
+  <rect width="1200" height="800" fill="#dcece9"/>
+  <circle cx="980" cy="130" r="190" fill="#d7ec62" opacity=".8"/>
+  <path d="M0 640c180-130 340-110 500-20 170 95 300 90 700-90v270H0z" fill="#214a35"/>
+  <path d="M0 700c180-85 330-90 530-10 190 75 360 45 670-95v205H0z" fill="#163525" opacity=".62"/>
+  <g fill="#f8f8f4" font-family="Georgia,serif" text-anchor="middle">
+    <text x="600" y="380" font-size="84">STS Feed</text>
+    <text x="600" y="445" font-size="28" opacity=".85">Nutrisi tepat, ternak hebat.</text>
+  </g>
+</svg>

@@ -1,6 +1,8 @@
 export type ProductStatus = "draft" | "published" | "archived";
 export type ArticleStatus = "draft" | "published" | "archived";
 export type LeadType = "contact" | "product" | "partnership";
+export type LeadStatus = "new" | "contacted" | "qualified" | "closed" | "spam";
+export type VacancyStatus = "draft" | "active" | "closed";
 
 export interface ProductSpecification {
   label: string;
@@ -53,6 +55,7 @@ export interface Testimonial {
   metricValue: string;
   image: string;
   imageAlt: string;
+  status?: "draft" | "published" | "archived";
 }
 
 export interface Certification {
@@ -67,4 +70,33 @@ export interface Milestone {
   year: string;
   title: string;
   description: string;
+}
+
+export interface Vacancy {
+  id: string;
+  position: string;
+  location: string;
+  employmentType: string;
+  description: string;
+  requirements: string[];
+  closingAt?: string;
+  status: VacancyStatus;
+  applyUrl?: string;
+  updatedAt: string;
+}
+
+export interface Lead {
+  id: string;
+  type: LeadType;
+  name: string;
+  phone: string;
+  message: string;
+  topic?: string;
+  productSlug?: string;
+  sourcePage?: string;
+  utm?: Record<string, string>;
+  privacyConsentAt: string;
+  status: LeadStatus;
+  createdAt: string;
+  updatedAt: string;
 }

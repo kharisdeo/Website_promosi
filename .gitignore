@@ -1,7 +1,25 @@
-# Temporary PDF rendering and local scratch files
-tmp/
+# dependencies
+node_modules/
+.pnpm-store/
+.pnp/
+.pnp.*
 
-# Common OS/editor artifacts
+# next
+.next/
+out/
+
+# local env files
+.env*
+!.env.example
+
+# generated files
+*.tsbuildinfo
+next-env.d.ts.tmp
+
+# editor / OS
 .DS_Store
 Thumbs.db
 .vscode/
+
+# temporary PDF rendering and local scratch files
+tmp/

@@ -1,0 +1,7 @@
+# Temporary PDF rendering and local scratch files
+tmp/
+
+# Common OS/editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/

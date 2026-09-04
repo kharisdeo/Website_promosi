@@ -157,8 +157,8 @@ const legacyProducts: Product[] = [
 
 /**
  * Seed catalog for Anugerah Jaya Abadi. Product imagery is kept local using
- * the supplied chicken and koi collages, so the storefront remains usable in
- * offline previews and does not depend on third-party image CDNs.
+ * the supplied package references and generated studio renders, so the
+ * storefront remains usable in offline previews without third-party CDNs.
  */
 export const products: Product[] = [
   {
@@ -177,7 +177,7 @@ export const products: Product[] = [
       { label: "Fase", value: "Starter 0–2 bulan" },
       { label: "Ketersediaan", value: "Konfirmasi stok" },
     ],
-    image: "/images/products/hi-pro-vite-a591k.png",
+    image: "/images/products/render-3d/hi-pro-vite-a591k-3d.png",
     imageAlt: "Kemasan HI-PRO-VITE A591K",
     accent: "lime",
     status: "published",
@@ -199,7 +199,7 @@ export const products: Product[] = [
       { label: "Fase", value: "Grower 2–6 bulan" },
       { label: "Ketersediaan", value: "Konfirmasi stok" },
     ],
-    image: "/images/products/hi-pro-vite-a592k.png",
+    image: "/images/products/render-3d/hi-pro-vite-a592k-3d.png",
     imageAlt: "Kemasan HI-PRO-VITE A592K",
     accent: "amber",
     status: "published",
@@ -221,7 +221,7 @@ export const products: Product[] = [
       { label: "Fase", value: "Grower 6+ bulan" },
       { label: "Ketersediaan", value: "Konfirmasi stok" },
     ],
-    image: "/images/products/hi-pro-vite-a594k.png",
+    image: "/images/products/render-3d/hi-pro-vite-a594k-3d.png",
     imageAlt: "Kemasan HI-PRO-VITE A594K",
     accent: "sky",
     status: "published",
@@ -243,7 +243,7 @@ export const products: Product[] = [
       { label: "Fase", value: "Layer 6+ bulan" },
       { label: "Ketersediaan", value: "Konfirmasi stok" },
     ],
-    image: "/images/products/hi-pro-vite-a593k.png",
+    image: "/images/products/render-3d/hi-pro-vite-a593k-3d.png",
     imageAlt: "Kemasan HI-PRO-VITE A593K",
     accent: "orange",
     status: "published",
@@ -265,7 +265,7 @@ export const products: Product[] = [
       { label: "Penggunaan", value: "Harian" },
       { label: "Ketersediaan", value: "Konfirmasi stok" },
     ],
-    image: "/images/products/hikari-friend.png",
+    image: "/images/products/render-3d/hikari-friend-3d.png",
     imageAlt: "Kemasan Hikari Friend",
     accent: "lime",
     status: "published",
@@ -287,7 +287,7 @@ export const products: Product[] = [
       { label: "Penggunaan", value: "Pertumbuhan" },
       { label: "Ketersediaan", value: "Konfirmasi stok" },
     ],
-    image: "/images/products/hikari-jumbo.png",
+    image: "/images/products/render-3d/hikari-jumbo-3d.png",
     imageAlt: "Kemasan Hikari Jumbo",
     accent: "amber",
     status: "published",
@@ -309,7 +309,7 @@ export const products: Product[] = [
       { label: "Kategori", value: "Katalog" },
       { label: "Ketersediaan", value: "Konfirmasi stok" },
     ],
-    image: "/images/products/hiroyuki-koi.png",
+    image: "/images/products/render-3d/hiroyuki-koi-3d.png",
     imageAlt: "Kemasan Hiroyuki Koi",
     accent: "sky",
     status: "published",
@@ -331,7 +331,7 @@ export const products: Product[] = [
       { label: "Penggunaan", value: "Breeder" },
       { label: "Ketersediaan", value: "Konfirmasi stok" },
     ],
-    image: "/images/products/ikushu-breeder-plus.png",
+    image: "/images/products/render-3d/ikushu-breeder-plus-3d.png",
     imageAlt: "Kemasan Ikushu Breeder Plus",
     accent: "orange",
     status: "published",
@@ -353,7 +353,7 @@ export const products: Product[] = [
       { label: "Kategori", value: "Katalog" },
       { label: "Ketersediaan", value: "Konfirmasi stok" },
     ],
-    image: "/images/products/wellred.png",
+    image: "/images/products/render-3d/wellred-3d.png",
     imageAlt: "Kemasan WellRED",
     accent: "lime",
     status: "published",

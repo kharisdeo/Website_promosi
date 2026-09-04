@@ -16,9 +16,9 @@ export default function HomePage() {
       <section className="hero">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Distributor pakan · Ayam Bangkok · Koi</p>
+            <p className="eyebrow">Distributor pakan · Semua hewan ternak</p>
             <h1>Pilihan pakan yang <em>tepat</em>, untuk rawatan yang lebih tenang.</h1>
-            <p>Anugerah Jaya Abadi membantu peternak dan penghobi menemukan pakan ayam Bangkok serta koi dari merek tepercaya, dengan informasi stok yang transparan.</p>
+            <p>CV. Anugerah Jaya Abadi membantu peternak menemukan pakan untuk berbagai hewan ternak dari merek tepercaya, dengan informasi stok yang transparan.</p>
             <div className="hero-buttons">
               <Link href="/products" className="button button-dark">Temukan Produk <ArrowUpRight size={18} /></Link>
               <a href={whatsappHref()} target="_blank" rel="noreferrer" className="button button-lime">Konsultasi via WhatsApp <ArrowUpRight size={18} /></a>
@@ -29,7 +29,7 @@ export default function HomePage() {
             <div className="hero-photo">
               <Image src="/images/products/hi-pro-vite-catalog.png" alt="Kolase produk HI-PRO-VITE untuk ayam Bangkok" fill sizes="(max-width: 760px) 90vw, 45vw" priority />
             </div>
-            <div className="hero-sticker"><strong>2</strong><span>kategori utama</span></div>
+            <div className="hero-sticker"><strong>Multi</strong><span>kategori ternak</span></div>
             <div className="hero-quote"><p>“Pilih pakan sesuai fase, lalu cek stok sebelum berangkat.”</p><small>— Prinsip Jaya Abadi</small></div>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function HomePage() {
 
       <section className="section home-products">
         <div className="container">
-          <SectionHeading eyebrow="Katalog produk" title="Pakan ayam Bangkok dan koi, lebih mudah ditemukan." description="Jelajahi pilihan HI-PRO-VITE, Hikari, Hiroyuki, Ikushu, WellRED, dan produk koi lain yang tersedia melalui Jaya Abadi. Konfirmasi stok sebelum memesan." action={{ href: "/products", label: "Lihat semua produk" }} />
+          <SectionHeading eyebrow="Katalog produk" title="Pilihan pakan untuk hewan ternak, lebih mudah ditemukan." description="Jelajahi pilihan pakan dari berbagai kategori ternak yang tersedia melalui Jaya Abadi. Konfirmasi stok dan kebutuhan pengiriman sebelum memesan." action={{ href: "/products", label: "Lihat semua produk" }} />
           <div className="product-grid">{featuredProducts.map((product) => <ProductCard key={product.id} product={product} />)}</div>
         </div>
       </section>
@@ -86,6 +86,6 @@ export default function HomePage() {
 }
 
 export const metadata = {
-  title: "Distributor pakan ayam Bangkok dan koi",
-  description: `Temukan katalog pakan ${siteSettings.shortName} untuk ayam Bangkok dan koi, lalu konfirmasi stok bersama tim kami.`,
+  title: "Distributor pakan untuk semua hewan ternak",
+  description: `Temukan katalog pakan ${siteSettings.shortName} untuk berbagai hewan ternak, lalu konfirmasi stok bersama tim kami.`,
 };

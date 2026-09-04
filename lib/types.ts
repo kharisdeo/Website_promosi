@@ -10,6 +10,16 @@ export interface ProductSpecification {
   unit?: string;
 }
 
+/** Optional image frames for the six sides of the interactive product viewer. */
+export interface ProductViewerFrames {
+  front?: string;
+  back?: string;
+  left?: string;
+  right?: string;
+  top?: string;
+  bottom?: string;
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -25,6 +35,7 @@ export interface Product {
   specifications: ProductSpecification[];
   image: string;
   imageAlt: string;
+  viewerFrames?: ProductViewerFrames;
   accent: "lime" | "amber" | "sky" | "orange";
   brochure?: { href: string; label: string; size: string };
   status: ProductStatus;

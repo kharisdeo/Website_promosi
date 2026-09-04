@@ -4,8 +4,8 @@ import { useMemo, useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import type { Product } from "@/lib/types";
 
-const animalFilters = ["Semua", "Ayam pedaging", "Ayam petelur", "Sapi", "Kambing"] as const;
-const stageFilters = ["Semua", "Starter", "Grower", "Finisher", "Layer"] as const;
+const animalFilters = ["Semua", "Ayam Bangkok", "Ikan koi", "Ayam pedaging", "Ayam petelur", "Sapi", "Kambing"] as const;
+const stageFilters = ["Semua", "Starter", "Grower", "Layer", "Harian", "Breeder", "Katalog", "Finisher"] as const;
 
 export default function ProductExplorer({ products }: { products: Product[] }) {
   const [animal, setAnimal] = useState<string>("Semua");
@@ -25,8 +25,8 @@ export default function ProductExplorer({ products }: { products: Product[] }) {
   return (
     <>
       <div className="filter-bar" aria-label="Filter katalog produk">
-        <div className="filter-group"><span className="filter-label">Jenis ternak</span>{animalFilters.map((value) => <button key={value} className={animal === value ? "filter-button active" : "filter-button"} type="button" aria-pressed={animal === value} onClick={() => selectAnimal(value)}>{value}</button>)}</div>
-        <div className="filter-group"><span className="filter-label">Fase pakan</span>{stageFilters.map((value) => <button key={value} className={stage === value ? "filter-button active" : "filter-button"} type="button" aria-pressed={stage === value} onClick={() => selectStage(value)}>{value}</button>)}</div>
+        <div className="filter-group"><span className="filter-label">Kategori katalog</span>{animalFilters.map((value) => <button key={value} className={animal === value ? "filter-button active" : "filter-button"} type="button" aria-pressed={animal === value} onClick={() => selectAnimal(value)}>{value}</button>)}</div>
+        <div className="filter-group"><span className="filter-label">Kebutuhan pakan</span>{stageFilters.map((value) => <button key={value} className={stage === value ? "filter-button active" : "filter-button"} type="button" aria-pressed={stage === value} onClick={() => selectStage(value)}>{value}</button>)}</div>
         {(animal !== "Semua" || stage !== "Semua") && <button className="reset-button" type="button" onClick={reset}>Reset filter</button>}
       </div>
       <p className="products-result" aria-live="polite">Menampilkan <strong>{filtered.length}</strong> dari {products.length} produk</p>

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
-import { getPublishedArticles } from "@/lib/data";
+import { getPublishedArticles, siteSettings } from "@/lib/data";
 
-export const metadata: Metadata = { title: "Berita & edukasi", description: "Tips praktis, cerita peternak, dan wawasan nutrisi dari STS Feed." };
+export const metadata: Metadata = { title: "Berita & edukasi", description: `Tips praktis, cerita peternak, dan wawasan pakan dari ${siteSettings.shortName}.` };
 
 export default function NewsPage() {
   const items = getPublishedArticles();

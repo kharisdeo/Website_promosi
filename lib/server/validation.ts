@@ -3,8 +3,8 @@ import { randomUUID } from "node:crypto";
 import { ApiError } from "@/lib/server/api";
 import type { Article, Product, ProductSpecification, Testimonial, Vacancy } from "@/lib/types";
 
-const animals = ["Ayam pedaging", "Ayam petelur", "Sapi", "Kambing"] as const;
-const stages = ["Starter", "Grower", "Finisher", "Layer"] as const;
+const animals = ["Ayam Bangkok", "Ikan koi", "Ayam pedaging", "Ayam petelur", "Sapi", "Kambing"] as const;
+const stages = ["Starter", "Grower", "Finisher", "Layer", "Harian", "Breeder", "Katalog"] as const;
 const accents = ["lime", "amber", "sky", "orange"] as const;
 const statuses = ["draft", "published", "archived"] as const;
 

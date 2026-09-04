@@ -9,23 +9,26 @@ import type {
 const unsplash = (id: string, width = 1200) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`;
 
+const catalogImage = "/images/products/hi-pro-vite-catalog.png";
+const koiCatalogImage = "/images/products/koi-feed-catalog.png";
+
 export const siteSettings = {
-  companyName: "CV Sumber Ternak Sejahtera",
-  shortName: "STS Feed",
-  tagline: "Nutrisi tepat, ternak hebat.",
+  companyName: "Anugerah Jaya Abadi",
+  shortName: "Jaya Abadi",
+  tagline: "Pakan pilihan, stok lebih pasti.",
   whatsappNumber: "6281234567890",
   whatsappDisplay: "+62 812-3456-7890",
-  email: "halo@stsfeed.id",
+  email: "halo@anugerahjayaabadi.id",
   phone: "(0274) 555-0198",
   address: "Jl. Raya Sentolo Km 4, Kulon Progo, DI Yogyakarta 55664",
   operatingHours: "Senin–Jumat, 08.00–17.00 WIB",
-  instagram: "https://instagram.com/stsfeed",
-  facebook: "https://facebook.com/stsfeed",
+  instagram: "https://instagram.com/anugerahjayaabadi",
+  facebook: "https://facebook.com/anugerahjayaabadi",
   mapUrl:
     "https://maps.google.com/?q=Kulon+Progo+Yogyakarta",
 };
 
-export const products: Product[] = [
+const legacyProducts: Product[] = [
   {
     id: "p-001",
     slug: "sts-broiler-starter-10",
@@ -41,7 +44,7 @@ export const products: Product[] = [
     benefits: [
       "Mendukung pembentukan tulang dan otot sejak awal",
       "Membantu keseragaman bobot dan konsumsi pakan",
-      "Diproduksi dengan kontrol mutu berlapis",
+      "Dipilih dari merek tepercaya melalui jaringan distributor",
     ],
     specifications: [
       { label: "Protein kasar", value: "min. 21", unit: "%" },
@@ -152,6 +155,212 @@ export const products: Product[] = [
   },
 ];
 
+/**
+ * Seed catalog for Anugerah Jaya Abadi. Product imagery is kept local using
+ * the supplied chicken and koi collages, so the storefront remains usable in
+ * offline previews and does not depend on third-party image CDNs.
+ */
+export const products: Product[] = [
+  {
+    id: "p-101",
+    slug: "hi-pro-vite-a591k",
+    name: "HI-PRO-VITE A591K",
+    tagline: "Pakan starter ayam Bangkok.",
+    shortDescription: "Pakan starter untuk ayam Bangkok usia 0–2 bulan.",
+    description: "A591K tercantum sebagai pilihan starter ayam Bangkok usia 0–2 bulan. Ketersediaan, kemasan, dan kecocokan program pakan dapat berubah; silakan konfirmasi kepada tim Jaya Abadi sebelum memesan.",
+    animalType: "Ayam Bangkok",
+    feedStage: "Starter",
+    packageSizes: ["Sesuai stok"],
+    benefits: ["Fase starter 0–2 bulan", "Katalog distributor Jaya Abadi", "Konfirmasi stok sebelum pemesanan"],
+    specifications: [
+      { label: "Jenis ternak", value: "Ayam Bangkok" },
+      { label: "Fase", value: "Starter 0–2 bulan" },
+      { label: "Ketersediaan", value: "Konfirmasi stok" },
+    ],
+    image: catalogImage,
+    imageAlt: "Logo Anugerah Jaya Abadi untuk katalog HI-PRO-VITE A591K",
+    accent: "lime",
+    status: "published",
+    updatedAt: "2026-09-04",
+  },
+  {
+    id: "p-102",
+    slug: "hi-pro-vite-a592k",
+    name: "HI-PRO-VITE A592K",
+    tagline: "Pakan grower ayam Bangkok muda.",
+    shortDescription: "Pakan grower untuk ayam Bangkok usia 2–6 bulan.",
+    description: "A592K tercantum sebagai pilihan grower ayam Bangkok usia 2–6 bulan. Ketersediaan, kemasan, dan kecocokan program pakan dapat berubah; silakan konfirmasi kepada tim Jaya Abadi sebelum memesan.",
+    animalType: "Ayam Bangkok",
+    feedStage: "Grower",
+    packageSizes: ["Sesuai stok"],
+    benefits: ["Fase grower 2–6 bulan", "Katalog distributor Jaya Abadi", "Konfirmasi stok sebelum pemesanan"],
+    specifications: [
+      { label: "Jenis ternak", value: "Ayam Bangkok" },
+      { label: "Fase", value: "Grower 2–6 bulan" },
+      { label: "Ketersediaan", value: "Konfirmasi stok" },
+    ],
+    image: catalogImage,
+    imageAlt: "Logo Anugerah Jaya Abadi untuk katalog HI-PRO-VITE A592K",
+    accent: "amber",
+    status: "published",
+    updatedAt: "2026-09-04",
+  },
+  {
+    id: "p-103",
+    slug: "hi-pro-vite-a594k",
+    name: "HI-PRO-VITE A594K",
+    tagline: "Pakan grower ayam Bangkok dewasa.",
+    shortDescription: "Pakan grower untuk ayam Bangkok usia 6 bulan ke atas.",
+    description: "A594K tercantum sebagai pilihan grower ayam Bangkok usia 6 bulan ke atas. Ketersediaan, kemasan, dan kecocokan program pakan dapat berubah; silakan konfirmasi kepada tim Jaya Abadi sebelum memesan.",
+    animalType: "Ayam Bangkok",
+    feedStage: "Grower",
+    packageSizes: ["Sesuai stok"],
+    benefits: ["Fase grower 6+ bulan", "Katalog distributor Jaya Abadi", "Konfirmasi stok sebelum pemesanan"],
+    specifications: [
+      { label: "Jenis ternak", value: "Ayam Bangkok" },
+      { label: "Fase", value: "Grower 6+ bulan" },
+      { label: "Ketersediaan", value: "Konfirmasi stok" },
+    ],
+    image: catalogImage,
+    imageAlt: "Logo Anugerah Jaya Abadi untuk katalog HI-PRO-VITE A594K",
+    accent: "sky",
+    status: "published",
+    updatedAt: "2026-09-04",
+  },
+  {
+    id: "p-104",
+    slug: "hi-pro-vite-a593k",
+    name: "HI-PRO-VITE A593K",
+    tagline: "Pakan layer untuk ayam Bangkok betina.",
+    shortDescription: "Pakan layer untuk ayam Bangkok betina usia 6 bulan ke atas.",
+    description: "A593K tercantum sebagai pilihan layer/betina ayam Bangkok usia 6 bulan ke atas. Ketersediaan, kemasan, dan kecocokan program pakan dapat berubah; silakan konfirmasi kepada tim Jaya Abadi sebelum memesan.",
+    animalType: "Ayam Bangkok",
+    feedStage: "Layer",
+    packageSizes: ["Sesuai stok"],
+    benefits: ["Fase layer/betina 6+ bulan", "Katalog distributor Jaya Abadi", "Konfirmasi stok sebelum pemesanan"],
+    specifications: [
+      { label: "Jenis ternak", value: "Ayam Bangkok betina" },
+      { label: "Fase", value: "Layer 6+ bulan" },
+      { label: "Ketersediaan", value: "Konfirmasi stok" },
+    ],
+    image: catalogImage,
+    imageAlt: "Logo Anugerah Jaya Abadi untuk katalog HI-PRO-VITE A593K",
+    accent: "orange",
+    status: "published",
+    updatedAt: "2026-09-04",
+  },
+  {
+    id: "p-105",
+    slug: "hikari-friend",
+    name: "Hikari Friend",
+    tagline: "Pakan terapung harian untuk koi dan kolam.",
+    shortDescription: "Pilihan pakan terapung harian untuk koi dan ikan kolam.",
+    description: "Hikari Friend adalah pilihan pakan terapung harian untuk koi dan ikan kolam. Detail ukuran, kemasan, dan stok mengikuti barang yang tersedia di Jaya Abadi; silakan konfirmasi sebelum memesan.",
+    animalType: "Ikan koi",
+    feedStage: "Harian",
+    packageSizes: ["Sesuai stok"],
+    benefits: ["Pakan terapung harian", "Untuk koi dan ikan kolam", "Konfirmasi stok sebelum pemesanan"],
+    specifications: [
+      { label: "Jenis ikan", value: "Koi / ikan kolam" },
+      { label: "Penggunaan", value: "Harian" },
+      { label: "Ketersediaan", value: "Konfirmasi stok" },
+    ],
+    image: koiCatalogImage,
+    imageAlt: "Kolase Hikari Friend dan produk pakan koi dari katalog Jaya Abadi",
+    accent: "lime",
+    status: "published",
+    updatedAt: "2026-09-04",
+  },
+  {
+    id: "p-106",
+    slug: "hikari-jumbo",
+    name: "Hikari Jumbo",
+    tagline: "Pakan pertumbuhan untuk koi.",
+    shortDescription: "Pilihan pakan pertumbuhan untuk koi dengan ukuran sesuai katalog.",
+    description: "Hikari Jumbo adalah pilihan pakan pertumbuhan untuk koi. Detail ukuran, kemasan, dan stok mengikuti barang yang tersedia di Jaya Abadi; silakan konfirmasi sebelum memesan.",
+    animalType: "Ikan koi",
+    feedStage: "Grower",
+    packageSizes: ["Sesuai stok"],
+    benefits: ["Pakan pertumbuhan koi", "Pilihan dari katalog koi", "Konfirmasi stok sebelum pemesanan"],
+    specifications: [
+      { label: "Jenis ikan", value: "Koi" },
+      { label: "Penggunaan", value: "Pertumbuhan" },
+      { label: "Ketersediaan", value: "Konfirmasi stok" },
+    ],
+    image: koiCatalogImage,
+    imageAlt: "Kolase Hikari Jumbo dan produk pakan koi dari katalog Jaya Abadi",
+    accent: "amber",
+    status: "published",
+    updatedAt: "2026-09-04",
+  },
+  {
+    id: "p-107",
+    slug: "hiroyuki-koi",
+    name: "Hiroyuki Koi",
+    tagline: "Pilihan pakan koi dari katalog Jaya Abadi.",
+    shortDescription: "Pakan koi yang tersedia melalui katalog distributor Jaya Abadi.",
+    description: "Hiroyuki Koi tercantum dalam katalog pilihan pakan koi Jaya Abadi. Detail penggunaan, ukuran, kemasan, dan stok perlu dikonfirmasi kepada tim sebelum memesan.",
+    animalType: "Ikan koi",
+    feedStage: "Katalog",
+    packageSizes: ["Sesuai stok"],
+    benefits: ["Pilihan katalog pakan koi", "Detail mengikuti label kemasan", "Konfirmasi stok sebelum pemesanan"],
+    specifications: [
+      { label: "Jenis ikan", value: "Koi" },
+      { label: "Kategori", value: "Katalog" },
+      { label: "Ketersediaan", value: "Konfirmasi stok" },
+    ],
+    image: koiCatalogImage,
+    imageAlt: "Kolase Hiroyuki Koi dan produk pakan koi dari katalog Jaya Abadi",
+    accent: "sky",
+    status: "published",
+    updatedAt: "2026-09-04",
+  },
+  {
+    id: "p-108",
+    slug: "ikushu-breeder-plus",
+    name: "Ikushu Breeder Plus",
+    tagline: "Pilihan pakan breeder koi.",
+    shortDescription: "Pakan breeder koi dari katalog distributor Jaya Abadi.",
+    description: "Ikushu Breeder Plus tercantum sebagai pilihan pakan breeder koi. Detail penggunaan, ukuran, kemasan, dan stok perlu dikonfirmasi kepada tim sebelum memesan.",
+    animalType: "Ikan koi",
+    feedStage: "Breeder",
+    packageSizes: ["Sesuai stok"],
+    benefits: ["Kategori breeder koi", "Detail mengikuti label kemasan", "Konfirmasi stok sebelum pemesanan"],
+    specifications: [
+      { label: "Jenis ikan", value: "Koi" },
+      { label: "Penggunaan", value: "Breeder" },
+      { label: "Ketersediaan", value: "Konfirmasi stok" },
+    ],
+    image: koiCatalogImage,
+    imageAlt: "Kolase Ikushu Breeder Plus dan produk pakan koi dari katalog Jaya Abadi",
+    accent: "orange",
+    status: "published",
+    updatedAt: "2026-09-04",
+  },
+  {
+    id: "p-109",
+    slug: "wellred-koi",
+    name: "WellRED",
+    tagline: "Pilihan katalog pakan koi.",
+    shortDescription: "Produk pakan koi yang tersedia sesuai stok distributor.",
+    description: "WellRED tercantum dalam katalog pilihan pakan koi Jaya Abadi. Detail penggunaan, ukuran, kemasan, dan stok perlu dikonfirmasi kepada tim sebelum memesan.",
+    animalType: "Ikan koi",
+    feedStage: "Katalog",
+    packageSizes: ["Sesuai stok"],
+    benefits: ["Pilihan katalog pakan koi", "Detail mengikuti label kemasan", "Konfirmasi stok sebelum pemesanan"],
+    specifications: [
+      { label: "Jenis ikan", value: "Koi" },
+      { label: "Kategori", value: "Katalog" },
+      { label: "Ketersediaan", value: "Konfirmasi stok" },
+    ],
+    image: koiCatalogImage,
+    imageAlt: "Kolase WellRED dan produk pakan koi dari katalog Jaya Abadi",
+    accent: "lime",
+    status: "published",
+    updatedAt: "2026-09-04",
+  },
+];
+
 export const testimonials: Testimonial[] = [
   {
     id: "t-001",
@@ -187,10 +396,10 @@ export const certifications: Certification[] = [
 ];
 
 export const milestones: Milestone[] = [
-  { year: "2008", title: "Berawal dari satu gudang", description: "STS Feed mulai melayani peternak lokal di Daerah Istimewa Yogyakarta." },
-  { year: "2014", title: "Pabrik pertama beroperasi", description: "Kapasitas produksi bertambah dan standar kontrol mutu mulai diterapkan secara menyeluruh." },
-  { year: "2020", title: "Pendampingan peternak diperluas", description: "Tim nutrisi dan sales hadir lebih dekat di Jawa Tengah dan Jawa Timur." },
-  { year: "2025", title: "Melayani 2.400+ peternak", description: "STS terus berinvestasi pada kualitas produk, riset, dan kemitraan yang sehat." },
+  { year: "01", title: "Kenali kebutuhan", description: "Ceritakan jenis ayam atau koi, fase pemeliharaan, serta ukuran pakan yang dicari." },
+  { year: "02", title: "Pilih dari katalog", description: "Bandingkan pilihan HI-PRO-VITE, Hikari, Hiroyuki, Ikushu, WellRED, dan produk lain yang tersedia." },
+  { year: "03", title: "Konfirmasi stok", description: "Tim Jaya Abadi memeriksa ketersediaan, kemasan, dan opsi pengiriman sebelum transaksi." },
+  { year: "04", title: "Pesanan dikirim", description: "Setelah detail disepakati, kami bantu menyiapkan proses distribusi ke lokasi tujuan." },
 ];
 
 export const articles: Article[] = [
@@ -241,7 +450,7 @@ export const articles: Article[] = [
     readTime: "6 menit baca",
     image: unsplash("photo-1596733430284-f7437764b1a9"),
     imageAlt: "Peternak berdiri di area kandang",
-    author: "Redaksi STS Feed",
+    author: "Redaksi Jaya Abadi",
     content: [
       "Budi memulai usaha broiler dari kandang berkapasitas kecil di belakang rumah. Tantangan terbesarnya bukan hanya menjaga ayam tetap sehat, melainkan membaca data agar keputusan harian tidak lagi berdasarkan perkiraan.",
       "Bersama pendamping lapangan STS, ia mulai mencatat konsumsi pakan, bobot sampling, mortalitas, dan kondisi cuaca. Catatan sederhana itu menjadi dasar diskusi setiap kali ada perubahan di kandang.",

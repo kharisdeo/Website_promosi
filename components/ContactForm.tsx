@@ -79,7 +79,7 @@ export default function ContactForm({
   intro = "Kami biasanya membalas pada jam operasional di hari yang sama.",
   submitLabel = "Kirim pesan",
   successTitle = "Pesanmu sudah diterima.",
-  successDescription = "Tim STS Feed akan menghubungi melalui nomor yang kamu berikan. Terima kasih sudah menghubungi kami.",
+  successDescription = "Tim Jaya Abadi akan menghubungi melalui nomor yang kamu berikan. Terima kasih sudah menghubungi kami.",
 }: ContactFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [error, setError] = useState("");

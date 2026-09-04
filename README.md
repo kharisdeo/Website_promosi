@@ -1,6 +1,6 @@
-# STS Feed — Website Promosi Pakan Ternak
+# Anugerah Jaya Abadi — Website Promosi Pakan
 
-Website company profile dan katalog produk mobile-first untuk CV Sumber Ternak Sejahtera. Proyek ini menggunakan Next.js App Router, TypeScript, dan CSS design system ringan yang siap disambungkan ke CMS/API.
+Website company profile dan katalog produk mobile-first untuk Anugerah Jaya Abadi sebagai distributor pakan ayam Bangkok dan koi. Proyek ini menggunakan Next.js App Router, TypeScript, dan CSS design system ringan yang siap disambungkan ke CMS/API.
 
 ## Menjalankan secara lokal
 

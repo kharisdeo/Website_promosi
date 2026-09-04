@@ -2,23 +2,24 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import { siteSettings } from "@/lib/data";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "STS Feed — Nutrisi tepat, ternak hebat",
-    template: "%s | STS Feed",
+    default: `${siteSettings.companyName} — Distributor Pakan`,
+    template: `%s | ${siteSettings.companyName}`,
   },
-  description: "Pakan ternak berkualitas dan pendampingan yang dekat untuk membantu peternak Indonesia tumbuh lebih kuat.",
-  keywords: ["pakan ternak", "pakan ayam", "pakan sapi", "STS Feed", "peternakan Indonesia"],
+  description: `${siteSettings.companyName} menyediakan pilihan pakan ayam Bangkok dan koi melalui layanan distributor yang dekat dan responsif.`,
+  keywords: ["distributor pakan", "pakan ayam Bangkok", "pakan koi", siteSettings.shortName, siteSettings.companyName],
   openGraph: {
-    title: "STS Feed — Nutrisi tepat, ternak hebat",
-    description: "Pakan ternak berkualitas dan pendampingan yang dekat untuk membantu peternak Indonesia tumbuh lebih kuat.",
+    title: `${siteSettings.companyName} — Distributor Pakan`,
+    description: `Pilihan pakan ayam Bangkok dan koi dari distributor ${siteSettings.shortName}.`,
     type: "website",
     locale: "id_ID",
-    siteName: "STS Feed",
+    siteName: siteSettings.companyName,
   },
   robots: { index: true, follow: true },
 };

@@ -17,8 +17,9 @@ export interface Product {
   tagline: string;
   shortDescription: string;
   description: string;
-  animalType: "Ayam pedaging" | "Ayam petelur" | "Sapi" | "Kambing";
-  feedStage: "Starter" | "Grower" | "Finisher" | "Layer";
+  /** Public catalog categories used by the distributor storefront. */
+  animalType: "Ayam Bangkok" | "Ikan koi" | "Ayam pedaging" | "Ayam petelur" | "Sapi" | "Kambing";
+  feedStage: "Starter" | "Grower" | "Finisher" | "Layer" | "Harian" | "Breeder" | "Katalog";
   packageSizes: string[];
   benefits: string[];
   specifications: ProductSpecification[];

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { siteSettings } from "@/lib/data";
 
@@ -7,9 +8,9 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container footer-top">
         <div className="footer-intro">
-          <Link href="/" className="brand brand-footer" aria-label="STS Feed, beranda">
-            <span className="brand-mark" aria-hidden="true"><span /></span>
-            <span className="brand-copy"><strong>STS</strong><small>FEED</small></span>
+          <Link href="/" className="brand brand-footer" aria-label={`${siteSettings.companyName}, beranda`}>
+            <span className="brand-mark" aria-hidden="true"><Image src="/images/anugerah-jaya-abadi-logo.png" alt="" fill sizes="44px" /></span>
+            <span className="brand-copy"><strong>JAYA ABADI</strong><small>DISTRIBUTOR PAKAN</small></span>
           </Link>
           <p>Menumbuhkan kepercayaan, satu kandang setiap hari.</p>
           <Link href="/contact" className="text-link">Bicara dengan tim kami <ArrowUpRight size={16} /></Link>
@@ -27,7 +28,7 @@ export default function Footer() {
           <a href={`tel:${siteSettings.phone.replace(/\D/g, "")}`}><Phone size={16} />{siteSettings.phone}</a>
           <a href={`mailto:${siteSettings.email}`}><Mail size={16} />{siteSettings.email}</a>
           <a href={siteSettings.mapUrl} target="_blank" rel="noreferrer"><MapPin size={16} />{siteSettings.address}</a>
-          <a href={siteSettings.instagram} target="_blank" rel="noreferrer"><Instagram size={16} />@stsfeed</a>
+          <a href={siteSettings.instagram} target="_blank" rel="noreferrer"><Instagram size={16} />@anugerahjayaabadi</a>
         </div>
       </div>
       <div className="container footer-bottom">

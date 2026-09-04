@@ -1,4 +1,4 @@
-const FALLBACK_SITE_URL = "https://stsfeed.id";
+const FALLBACK_SITE_URL = "https://anugerahjayaabadi.id";
 
 function getSiteUrl() {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();

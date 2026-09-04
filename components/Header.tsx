@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -26,8 +27,8 @@ export default function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="brand" aria-label={`${siteSettings.companyName}, beranda`} onClick={() => setOpen(false)}>
-          <span className="brand-mark" aria-hidden="true"><span /></span>
-          <span className="brand-copy"><strong>STS</strong><small>FEED</small></span>
+          <span className="brand-mark" aria-hidden="true"><Image src="/images/anugerah-jaya-abadi-logo.png" alt="" fill sizes="44px" /></span>
+          <span className="brand-copy"><strong>JAYA ABADI</strong><small>DISTRIBUTOR PAKAN</small></span>
         </Link>
 
         <nav className="desktop-nav" aria-label="Navigasi utama">

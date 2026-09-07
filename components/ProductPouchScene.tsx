@@ -1,8 +1,8 @@
 "use client";
 
-import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
-import { Canvas, useLoader, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef, type ComponentRef } from "react";
+import { ContactShadows, Environment } from "@react-three/drei";
+import { Canvas, useLoader } from "@react-three/fiber";
+import { useEffect, useMemo } from "react";
 import {
   BufferGeometry,
   CatmullRomCurve3,
@@ -21,7 +21,7 @@ interface ProductPouchSceneProps {
   frontTexture: string;
   backTexture: string;
   alt: string;
-  resetVersion: number;
+  rotation?: { pitch: number; yaw: number };
 }
 
 const WIDTH = 1.46;
@@ -47,7 +47,9 @@ function createStandingPouchGeometry() {
     const normalizedX = (column / COLUMNS) * 2 - 1;
     const normalizedY = (row / ROWS) * 2 - 1;
     const taper = 1 - 0.075 * Math.pow(Math.abs(normalizedY), 4);
-    const sealedEdge = 0.72 + 0.28 * Math.pow(1 - Math.abs(normalizedY), 0.28);
+    // Kedalaman mengecil tajam di seal atas/bawah: siluetnya jadi pouch
+    // plastik terjepit, bukan balok dengan tutup datar.
+    const sealedEdge = 0.18 + 0.82 * Math.pow(1 - normalizedY * normalizedY, 0.42);
     const centerBulge = 0.62 + 0.38 * (1 - normalizedX * normalizedX);
     const z = side * DEPTH * sealedEdge * centerBulge;
 
@@ -131,17 +133,17 @@ function createStandingPouchGeometry() {
 function SealedPouchEdges() {
   const top = useMemo(
     () => new TubeGeometry(new CatmullRomCurve3([
-      new Vector3(-WIDTH * 0.47, HEIGHT * 0.49, DEPTH * 0.66),
-      new Vector3(0, HEIGHT * 0.505, DEPTH * 0.69),
-      new Vector3(WIDTH * 0.47, HEIGHT * 0.49, DEPTH * 0.66),
+      new Vector3(-WIDTH * 0.47, HEIGHT * 0.49, DEPTH * 0.16),
+      new Vector3(0, HEIGHT * 0.505, DEPTH * 0.18),
+      new Vector3(WIDTH * 0.47, HEIGHT * 0.49, DEPTH * 0.16),
     ]), 28, 0.018, 8, false),
     [],
   );
   const bottom = useMemo(
     () => new TubeGeometry(new CatmullRomCurve3([
-      new Vector3(-WIDTH * 0.46, -HEIGHT * 0.49, DEPTH * 0.51),
-      new Vector3(0, -HEIGHT * 0.505, DEPTH * 0.55),
-      new Vector3(WIDTH * 0.46, -HEIGHT * 0.49, DEPTH * 0.51),
+      new Vector3(-WIDTH * 0.46, -HEIGHT * 0.49, DEPTH * 0.13),
+      new Vector3(0, -HEIGHT * 0.505, DEPTH * 0.16),
+      new Vector3(WIDTH * 0.46, -HEIGHT * 0.49, DEPTH * 0.13),
     ]), 28, 0.014, 8, false),
     [],
   );
@@ -154,7 +156,7 @@ function SealedPouchEdges() {
   );
 }
 
-function PouchMesh({ frontTexture, backTexture, alt }: Omit<ProductPouchSceneProps, "resetVersion">) {
+function PouchMesh({ frontTexture, backTexture, alt, rotation }: ProductPouchSceneProps) {
   const [frontMap, backMap] = useLoader(TextureLoader, [frontTexture, backTexture]) as [Texture, Texture];
   const geometry = useMemo(() => createStandingPouchGeometry(), []);
 
@@ -170,63 +172,34 @@ function PouchMesh({ frontTexture, backTexture, alt }: Omit<ProductPouchScenePro
     const makeMaterial = (map?: Texture, color = "#f0ebe3") => new MeshPhysicalMaterial({
       color: new Color(color),
       map,
-      roughness: 0.46,
+      roughness: 0.35,
       metalness: 0,
-      clearcoat: 0.18,
-      clearcoatRoughness: 0.42,
+      clearcoat: 0.28,
+      clearcoatRoughness: 0.3,
       side: DoubleSide,
     });
 
     return [
       makeMaterial(frontMap),
       makeMaterial(backMap),
-      makeMaterial(undefined, "#e5ded4"),
-      makeMaterial(undefined, "#e5ded4"),
-      makeMaterial(undefined, "#efe9e0"),
-      makeMaterial(undefined, "#d8cec1"),
+      makeMaterial(undefined, "#f4f1eb"),
+      makeMaterial(undefined, "#f4f1eb"),
+      makeMaterial(undefined, "#faf8f3"),
+      makeMaterial(undefined, "#e6e1d8"),
     ];
   }, [frontMap, backMap]);
 
-  useEffect(() => () => {
-    geometry.dispose();
-    materials.forEach((material) => material.dispose());
-  }, [geometry, materials]);
+  const pouchRotation = rotation ?? { pitch: -0.04, yaw: -0.28 };
 
   return (
-    <group rotation={[0.04, -0.28, 0]}>
+    <group rotation={[pouchRotation.pitch, pouchRotation.yaw, 0]}>
       <mesh geometry={geometry} material={materials} castShadow receiveShadow name={alt} />
       <SealedPouchEdges />
     </group>
   );
 }
 
-function SceneControls({ resetVersion }: Pick<ProductPouchSceneProps, "resetVersion">) {
-  const controls = useRef<ComponentRef<typeof OrbitControls>>(null);
-  const { camera } = useThree();
-
-  useEffect(() => {
-    camera.position.set(0, 0.08, 4.05);
-    controls.current?.target.set(0, 0, 0);
-    controls.current?.update();
-  }, [camera, resetVersion]);
-
-  return (
-    <OrbitControls
-      ref={controls}
-      enablePan={false}
-      enableDamping
-      dampingFactor={0.08}
-      minDistance={2.8}
-      maxDistance={5.2}
-      minPolarAngle={0.34}
-      maxPolarAngle={Math.PI - 0.34}
-      rotateSpeed={0.72}
-      zoomSpeed={0.7}
-    />
-  );
-}
-
-export default function ProductPouchScene({ frontTexture, backTexture, alt, resetVersion }: ProductPouchSceneProps) {
+export default function ProductPouchScene({ frontTexture, backTexture, alt, rotation }: ProductPouchSceneProps) {
   return (
     <div className="viewer-3d-canvas" role="img" aria-label={`Model 3D kemasan ${alt}. Seret untuk melihat setiap sisi.`}>
       <Canvas camera={{ position: [0, 0.08, 4.05], fov: 31 }} dpr={[1, 1.75]} shadows gl={{ alpha: true, antialias: true }}>
@@ -234,10 +207,9 @@ export default function ProductPouchScene({ frontTexture, backTexture, alt, rese
         <ambientLight intensity={1.35} />
         <directionalLight castShadow intensity={2.25} position={[3.2, 4.8, 4.2]} shadow-mapSize-width={1024} shadow-mapSize-height={1024} />
         <directionalLight intensity={1.1} position={[-4, 1.8, -3]} />
-        <PouchMesh frontTexture={frontTexture} backTexture={backTexture} alt={alt} />
+        <PouchMesh frontTexture={frontTexture} backTexture={backTexture} alt={alt} rotation={rotation} />
         <ContactShadows position={[0, -1.17, 0]} opacity={0.28} scale={4.7} blur={2.7} far={2.2} />
         <Environment preset="studio" />
-        <SceneControls resetVersion={resetVersion} />
       </Canvas>
     </div>
   );

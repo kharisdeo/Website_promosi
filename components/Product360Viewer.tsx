@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { RotateCcw } from "lucide-react";
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { ProductViewerFrames } from "@/lib/types";
 
 const ProductPouchScene = dynamic(() => import("@/components/ProductPouchScene"), {
@@ -23,9 +23,15 @@ interface Product360ViewerProps {
  * ber-volume di ProductPouchScene, bukan enam gambar pada sisi kotak.
  */
 export default function Product360Viewer({ src, alt, accent, badgeLabel, frames }: Product360ViewerProps) {
-  const [rotation, setRotation] = useState({ pitch: -0.04, yaw: -0.28 });
+  const isPhotoMatchedPouch = Boolean(frames?.front);
+  const defaultRotation = { pitch: isPhotoMatchedPouch ? 0 : -0.04, yaw: isPhotoMatchedPouch ? 0 : -0.28 };
+  const [rotation, setRotation] = useState(defaultRotation);
   const lastPointer = useRef<{ x: number; y: number } | null>(null);
   const instructionId = useId();
+
+  useEffect(() => {
+    setRotation({ pitch: isPhotoMatchedPouch ? 0 : -0.04, yaw: isPhotoMatchedPouch ? 0 : -0.28 });
+  }, [src, isPhotoMatchedPouch]);
 
   return (
     <div className={`detail-image product-360-viewer accent-${accent}`}>
@@ -37,6 +43,7 @@ export default function Product360Viewer({ src, alt, accent, badgeLabel, frames 
         frontTexture={frames?.front ?? src}
         backTexture={frames?.back ?? src}
         rotation={rotation}
+        slim={isPhotoMatchedPouch}
       />
       <div
         className="viewer-3d-interaction"
@@ -61,7 +68,7 @@ export default function Product360Viewer({ src, alt, accent, badgeLabel, frames 
       <span className="product-badge">{badgeLabel}</span>
       <div className="viewer-360-caption" aria-hidden="true"><span>3D</span> Seret untuk memutar</div>
       <div className="viewer-360-controls" aria-label="Kontrol pratinjau 3D">
-        <button type="button" onClick={() => setRotation({ pitch: -0.04, yaw: -0.28 })} aria-label="Kembalikan kemasan ke tampilan depan">
+        <button type="button" onClick={() => setRotation(defaultRotation)} aria-label="Kembalikan kemasan ke tampilan depan">
           <RotateCcw size={16} />
         </button>
       </div>

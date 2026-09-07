@@ -22,11 +22,13 @@ interface ProductPouchSceneProps {
   backTexture: string;
   alt: string;
   rotation?: { pitch: number; yaw: number };
+  slim?: boolean;
 }
 
 const WIDTH = 1.46;
 const HEIGHT = 2.22;
-const DEPTH = 0.32;
+const DEFAULT_DEPTH = 0.32;
+const PHOTO_MATCHED_DEPTH = 0.15;
 const COLUMNS = 26;
 const ROWS = 34;
 
@@ -35,7 +37,7 @@ const ROWS = 34;
  * kiri/kanan + permukaan atas/bawah). Inilah bagian yang membentuk pouch 3D,
  * sehingga objek mempunyai volume fisik dan tidak dibangun dari PlaneGeometry.
  */
-function createStandingPouchGeometry() {
+function createStandingPouchGeometry(depth = DEFAULT_DEPTH) {
   const positions: number[] = [];
   const uvs: number[] = [];
   const indices: number[] = [];
@@ -51,7 +53,7 @@ function createStandingPouchGeometry() {
     // plastik terjepit, bukan balok dengan tutup datar.
     const sealedEdge = 0.18 + 0.82 * Math.pow(1 - normalizedY * normalizedY, 0.42);
     const centerBulge = 0.62 + 0.38 * (1 - normalizedX * normalizedX);
-    const z = side * DEPTH * sealedEdge * centerBulge;
+    const z = side * depth * sealedEdge * centerBulge;
 
     return new Vector3(
       normalizedX * (WIDTH / 2) * taper,
@@ -130,22 +132,22 @@ function createStandingPouchGeometry() {
   return geometry;
 }
 
-function SealedPouchEdges() {
+function SealedPouchEdges({ depth }: { depth: number }) {
   const top = useMemo(
     () => new TubeGeometry(new CatmullRomCurve3([
-      new Vector3(-WIDTH * 0.47, HEIGHT * 0.49, DEPTH * 0.16),
-      new Vector3(0, HEIGHT * 0.505, DEPTH * 0.18),
-      new Vector3(WIDTH * 0.47, HEIGHT * 0.49, DEPTH * 0.16),
+      new Vector3(-WIDTH * 0.47, HEIGHT * 0.49, depth * 0.16),
+      new Vector3(0, HEIGHT * 0.505, depth * 0.18),
+      new Vector3(WIDTH * 0.47, HEIGHT * 0.49, depth * 0.16),
     ]), 28, 0.018, 8, false),
-    [],
+    [depth],
   );
   const bottom = useMemo(
     () => new TubeGeometry(new CatmullRomCurve3([
-      new Vector3(-WIDTH * 0.46, -HEIGHT * 0.49, DEPTH * 0.13),
-      new Vector3(0, -HEIGHT * 0.505, DEPTH * 0.16),
-      new Vector3(WIDTH * 0.46, -HEIGHT * 0.49, DEPTH * 0.13),
+      new Vector3(-WIDTH * 0.46, -HEIGHT * 0.49, depth * 0.13),
+      new Vector3(0, -HEIGHT * 0.505, depth * 0.16),
+      new Vector3(WIDTH * 0.46, -HEIGHT * 0.49, depth * 0.13),
     ]), 28, 0.014, 8, false),
-    [],
+    [depth],
   );
 
   return (
@@ -156,9 +158,10 @@ function SealedPouchEdges() {
   );
 }
 
-function PouchMesh({ frontTexture, backTexture, alt, rotation }: ProductPouchSceneProps) {
+function PouchMesh({ frontTexture, backTexture, alt, rotation, slim = false }: ProductPouchSceneProps) {
   const [frontMap, backMap] = useLoader(TextureLoader, [frontTexture, backTexture]) as [Texture, Texture];
-  const geometry = useMemo(() => createStandingPouchGeometry(), []);
+  const depth = slim ? PHOTO_MATCHED_DEPTH : DEFAULT_DEPTH;
+  const geometry = useMemo(() => createStandingPouchGeometry(depth), [depth]);
 
   useEffect(() => {
     for (const texture of [frontMap, backMap]) {
@@ -189,17 +192,17 @@ function PouchMesh({ frontTexture, backTexture, alt, rotation }: ProductPouchSce
     ];
   }, [frontMap, backMap]);
 
-  const pouchRotation = rotation ?? { pitch: -0.04, yaw: -0.28 };
+  const pouchRotation = rotation ?? { pitch: slim ? 0 : -0.04, yaw: slim ? 0 : -0.28 };
 
   return (
     <group rotation={[pouchRotation.pitch, pouchRotation.yaw, 0]}>
       <mesh geometry={geometry} material={materials} castShadow receiveShadow name={alt} />
-      <SealedPouchEdges />
+      {!slim && <SealedPouchEdges depth={depth} />}
     </group>
   );
 }
 
-export default function ProductPouchScene({ frontTexture, backTexture, alt, rotation }: ProductPouchSceneProps) {
+export default function ProductPouchScene({ frontTexture, backTexture, alt, rotation, slim }: ProductPouchSceneProps) {
   return (
     <div className="viewer-3d-canvas" role="img" aria-label={`Model 3D kemasan ${alt}. Seret untuk melihat setiap sisi.`}>
       <Canvas camera={{ position: [0, 0.08, 4.05], fov: 31 }} dpr={[1, 1.75]} shadows gl={{ alpha: true, antialias: true }}>
@@ -207,7 +210,7 @@ export default function ProductPouchScene({ frontTexture, backTexture, alt, rota
         <ambientLight intensity={1.35} />
         <directionalLight castShadow intensity={2.25} position={[3.2, 4.8, 4.2]} shadow-mapSize-width={1024} shadow-mapSize-height={1024} />
         <directionalLight intensity={1.1} position={[-4, 1.8, -3]} />
-        <PouchMesh frontTexture={frontTexture} backTexture={backTexture} alt={alt} rotation={rotation} />
+        <PouchMesh frontTexture={frontTexture} backTexture={backTexture} alt={alt} rotation={rotation} slim={slim} />
         <ContactShadows position={[0, -1.17, 0]} opacity={0.28} scale={4.7} blur={2.7} far={2.2} />
         <Environment preset="studio" />
       </Canvas>

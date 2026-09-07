@@ -180,6 +180,7 @@ export const products: Product[] = [
     image: "/images/products/render-3d/hi-pro-vite-a591k-3d.png",
     imageAlt: "Kemasan HI-PRO-VITE A591K",
     viewerFrames: {
+      front: "/images/products/viewer-360/hi-pro-vite-a591k/front-viewer.png",
       back: "/images/products/viewer-360/hi-pro-vite-a591k/back.png",
       left: "/images/products/viewer-360/hi-pro-vite-a591k/left.png",
       right: "/images/products/viewer-360/hi-pro-vite-a591k/right.png",
@@ -238,6 +239,7 @@ export const products: Product[] = [
     image: "/images/products/render-3d/hi-pro-vite-a594k-3d.png",
     imageAlt: "Kemasan HI-PRO-VITE A594K",
     viewerFrames: {
+      front: "/images/products/viewer-360/hi-pro-vite-a594k/front-viewer.png",
       back: "/images/products/viewer-360/hi-pro-vite-a594k/back.png",
       left: "/images/products/viewer-360/hi-pro-vite-a594k/left.png",
       right: "/images/products/viewer-360/hi-pro-vite-a594k/right.png",
